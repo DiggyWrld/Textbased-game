@@ -1,0 +1,266 @@
+#include<iostream>
+ //#include<windows.h>
+#include<string>
+using namespace std;
+
+//function declarations
+void shop();
+void monster ();
+void Battle (int monsterhealth); 
+//global variables
+string inventory[10];
+int health = 100;
+
+bool key = 0;
+bool won = 0;
+int main() {
+	//local game variables 
+	int room = 1;
+	string input;
+ 
+
+	cout << "you wake up to find yourself in a spooky mental warehouse. can you escape? Good luck!" << endl;
+
+//system("color 5a")
+	 do { //beginning of game loop---------------------
+//stuff printed here gets printed EVERY turn
+cout<<"your inventory"<< endl;
+for (int i =0; i < 5; i++)
+     cout << inventory [i] << "";
+cout << endl << endl;
+
+
+
+cout << "your health:" << health << endl <<  endl;
+
+
+
+
+		switch (room) {
+		case 1:
+			cout << "You are in medical basement after being stuck after that plane crash you have awaken and hear infected stain virus patients being experiemented on   . You can go East and north .";
+			getline(cin,input);
+			if (input.compare("pick up") == 0)
+        inventory[0] = "Map";
+			if (input == "E")
+				room = 2;
+      if (input == "N")
+        room = 5;  
+
+			
+			else
+			
+			break;
+		case 2:
+    monster();
+			cout << "You are in room for patient 34 and he doesn't seem to be infected but you have a picked up one of your weapons off the medical basement and you apporach the patient and ask him questions.  You can go East." << endl;
+			cin >> input;
+      	if (input.compare("pick up") == 0)
+        inventory[0] = "camera";
+			if (input == "E")
+				room = 3;
+		
+			else
+				cout << "Sorry, not a option." << endl;
+			break;
+		case 3:
+			cout << "you are in weapon storage after you have questioned the patient and you in weapon storage you seem to find all the clues and weapons eddie uses to infected or proctect himself from the infected patients or the outside world . You can go East. " << endl;
+			cin >> input;
+      	if (input.compare("pick up") == 0)
+        inventory[0] = "phone";
+			if (input == "E")
+				room = 6;
+			else
+				cout << "Sorry, not a option." << endl;
+		case 4 :
+			cout << "You are in medical tent after finding out about eddies plans to move foward with the stain virus you enter the doors and see the scientists in the area but they don't seem twisted like eddie is but you hide to not set out your location . You can go south. " << endl;
+			cin >> input;
+			if (input == "s")
+				room = 5;
+			else
+				
+			break;
+		case 5 :
+			cout << "You are in closet you need hide in here to escape the infected patients and need a breather to retrace your steps and think about moving foward. You can go north fam." << endl;
+			cin >> input;
+			if (input == "N")
+				room = 1;
+			else
+				cout << "Sorry, not a option";
+				break;
+      cout << "Sorry, not a option." << endl;
+		
+		case 6:
+			cout << "You are in lobby there seems to be no more infected in the area and you hear a few patients screams and you down the hall with flickering lights  . You can south and north.";
+			getline(cin,input);
+				
+			if (input.compare("pick up") == 0)
+        inventory[0] = "shoe";
+			if (input == "N")
+				room = 4;
+      if (input == "S")
+        room = 7;  
+
+			
+			else
+      cout << "Sorry, not a option." << endl;
+
+			break;
+     
+		
+		case 7:
+    	monster();//function call 
+			cout << "You are in front desk but there is no one there and you question yourself how crazy is eddie as you hear screams of infected patients go down rooms and halls and you start to see and get reflections of your past come back to haunt you. You can go north.";
+			getline(cin,input);
+				monster();//function call  
+			
+			if (input == "N")
+				room = 6;
+
+			
+			else
+				cout << "sorry, not a option." << endl;
+			break;
+    
+		
+		case 8:
+      monster();
+			cout << "You are in patient room 12 as you enter this room  and you get nightmares of your past and you start to break down and lose your mind and behind you see your dead mother as she you relive her death multiple times but you snap outta of it and she vanishes from the room. You can go East.";
+			getline(cin,input);
+			
+			
+			if (input == "E")
+				room = 9;
+
+			
+			else
+       cout << "Sorry, not a option." << endl;
+			
+			break;
+    
+		case 9:
+			cout << "You are in cafeteria after your breakdown you seek the cafeteria and you see the key that eddie has lefted behind and you seek to take it and make it out of this warzone of a place  . You can go South.";
+			getline(cin,input);
+				 
+			if (input.compare("pick up") == 0)
+        inventory[0] = "key";
+			if (input == "S")
+				room = 10;
+     
+		case 10:
+			cout << "You are in back room at the exit you are at the exit and do you care to escape and finally save the world from the stain virus or stay and find any secerts winthin in the place";
+			getline(cin,input);
+			
+        if(key==0){cout << "you have entered the key " <<endl;
+        won = 1;
+        
+        
+        }   
+			
+
+		
+				
+
+			
+			else
+      cout << "Sorry, not a option." << endl;
+      cout << " you win!" << endl;
+				
+			break;
+
+				} //end switch 
+
+	} while (input != "q" && health> 0 && won ==0); //end of game loop
+if(health<=0)
+cout<<"you ran out of health and died!"<<endl;
+//if statement for turns
+//cout here
+//if quit is true
+//cout you quit.
+//else
+
+     
+   //end game loop--------------
+}//end of main 
+
+//function definition
+void shop() {
+	string input; //local to shop /	do {
+		cout << "hi, welcome to my shop!" << endl;
+		                              
+		cout << "q to quit" << endl;
+		cin >> input;
+		if ( input == "k") {
+     
+              inventory[0] = "key";
+              cout << "you got a key" << endl;
+            
+
+
+
+if (input == "p") {
+    inventory[1] = "potion";
+    cout << " you got a potion" << endl;
+}
+else if (input == "l") {
+    inventory[2] = "lamp";
+    cout << "you got a lamp!" << endl;
+}
+    }while (input != "q");
+}
+  
+
+
+
+void monster() {
+  int num = rand() % 100 + 1; 
+  if (num < 20){
+      cout << " a skeleton appears" << endl;
+      health -=3;
+      cout << "the skeleton hits you for 3 damage" << endl;
+      Battle(40);
+}
+  else if (num < 50){
+        cout << "a zombie appears" << endl;
+        health -= 25;
+        cout << "the zombie hits you for 25 damage";
+        Battle(25);
+}        
+
+  else if (num <75){
+       cout << "a spider appears" << endl;
+       Battle(15);
+  }
+  else
+            cout << " the room is empty" << endl;
+
+}
+
+  void Battle(int MonsterHealth){
+     int damage;
+     while (health > 0 && MonsterHealth > 0 ) {
+          if (inventory[6] == "shield") {
+          damage = rand() % 40;
+          cout << "your shield blocks some of the damage!" << endl;
+     health -= damage;
+     cout << "the monster hurts you for" << damage <<"damage"<< endl;     
+     if (inventory[5] == "sword") {
+        cout << "you slice the ememy with your sword!" << endl;
+        damage = rand() % 50 + 20;
+     }
+     else {
+          damage = rand() % 40;
+          cout << "you hit the monster with your fist" << endl;
+     }        
+     MonsterHealth -= damage;
+     cout << "the monster hurts you for"<< damage<<"damage"<<endl;
+        // PlaySound((LPCSTR))"mario death sound",NULL SND_FILENAME,SND_FILENAME
+
+     
+   }
+   if(MonsterHealth<= 0) {
+      cout << "you destroyed the monster" << endl;
+   }
+   else cout << "you died" << endl;
+  }
+  }
